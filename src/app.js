@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouters';
+import AppRouter, {history} from './routers/AppRouters';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import getVisibleExpense from './selectors/expenses';
 import { Provider } from 'react-redux';
-import './firebase/firebase'
-
+import { firebase } from './firebase/firebase';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
@@ -20,10 +19,31 @@ const jsx = (
 );
 ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
-}).catch(() => {
-    ReactDOM.render(<p>there is a problem with conneting to the server</p>, document.getElementById('app'));
+
+let isRender = false;
+const renderApp = () => {
+    if(!isRender){
+        ReactDOM.render(jsx, document.getElementById('app'));
+        isRender = true;
+    }
+};
+
+
+firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+        console.log('login');
+        store.dispatch(startSetExpenses()).then(() => {
+            renderApp();
+            if(history.location.pathname === '/'){
+                history.push('/dashboard');
+            }
+        });
+    }
+    else{
+        console.log('login out');
+        renderApp();
+        history.push('/');
+    }
 });
 
 
