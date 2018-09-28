@@ -7,7 +7,7 @@ const AddExpensePage = (props) => (
     <div>
         <h1>Add Expense</h1>
         <ExpenseForm onSubmit={(expense) => {
-            console.log(expense);
+            //console.log(expense);
             props.dispatch(startAddExpense({
                 description: expense.description,
                 note: expense.note,

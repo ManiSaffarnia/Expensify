@@ -6,8 +6,10 @@ import { startSetExpenses } from './actions/expenses';
 import getVisibleExpense from './selectors/expenses';
 import { Provider } from 'react-redux';
 import { firebase } from './firebase/firebase';
+import 'react-dates/initialize';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
+import 'react-dates/lib/css/_datepicker.css';
 
 const store = configureStore();
 
