@@ -15,7 +15,7 @@ exports[`should render ExpenseList component with expenses 1`] = `
   />
   <ExpenseListItem
     amount={299500}
-    createdAt={[Function]}
+    createdAt={-345600000}
     description="Rent"
     id={2}
     key="2"
@@ -23,7 +23,7 @@ exports[`should render ExpenseList component with expenses 1`] = `
   />
   <ExpenseListItem
     amount={5000}
-    createdAt={[Function]}
+    createdAt={345600000}
     description="food"
     id={3}
     key="3"
