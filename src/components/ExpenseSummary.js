@@ -8,7 +8,7 @@ const ExpenseSummary = ({ expensesCount, expensesTotal }) => {
     const totalAmount = numeral(expensesTotal / 100).format('$0,0.00');
     return (
         <div>
-            {expensesCount > 0 && <h1>Viewing ${expensesCount} {expensesCount > 1 ? 'expenses' : 'expense'} totalling {totalAmount}</h1>}
+            {expensesCount > 0 && <h1>Viewing {expensesCount} {expensesCount > 1 ? 'expenses' : 'expense'} totalling {totalAmount}</h1>}
         </div>
     );
 };

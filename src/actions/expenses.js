@@ -10,7 +10,8 @@ export const addExpense = (expense) => ({
 //In action generator shoroo konande hast baraye addExpense. ba in mazmoon ke miad va aval be data base ezafe mikonim
 //dar callback zakhire dar database ADD_expense asli ro ke baraye kar ba redux hast barmigardoonim
 export const startAddExpense = ({ description = '', note = '', amount = 0, createdAt = 0 } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid
         const newExpense = {
             description,
             note,
@@ -18,7 +19,7 @@ export const startAddExpense = ({ description = '', note = '', amount = 0, creat
             createdAt
         };
 
-        database.ref('expenses').push(newExpense).then((ref) => {
+        database.ref(`users/${uid}/expenses`).push(newExpense).then((ref) => {
             dispatch(addExpense({
                 id: ref.key,
                 ...newExpense
@@ -29,15 +30,16 @@ export const startAddExpense = ({ description = '', note = '', amount = 0, creat
 
 
 //REMOVE_EXPENSE
-export const removeExpense = ({id} = {}) => ({
+export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
 
-export const startRemoveExpense = ({id} = {}) => {
-    return (dispatch) => {
-        database.ref(`expenses/${id}`).remove().then(()=>{
-            dispatch(removeExpense({id}));
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
         })
     };
 };
@@ -50,8 +52,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updatedExpense) => {
-    return (dispatch) => {
-        database.ref(`expenses/${id}`).update(updatedExpense).then(()=>{
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        database.ref(`users/${uid}/expenses/${id}`).update(updatedExpense).then(() => {
             dispatch(editExpense(id, updatedExpense));
         })
     };
@@ -66,8 +69,9 @@ export const setExpenses = (expenses) => ({
 
 //Start SET_EXPENSE
 export const startSetExpenses = () => {
-    return (dispatch) => {
-        return database.ref('expenses').once('value').then((snapshot) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             const expenses = [];
             snapshot.forEach((eachChild) => {
                 expenses.push({
