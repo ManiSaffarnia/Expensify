@@ -6,6 +6,7 @@ import { firebase } from './firebase/firebase';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from './actions/expenses';
 import { login, logout } from './actions/auth';
+import LoadingPage from './components/LoadingPage';
 
 import 'react-dates/initialize';
 import 'normalize.css/normalize.css';
@@ -20,8 +21,6 @@ const jsx = (
         <AppRouter />
     </Provider>
 );
-ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
-
 
 let isRender = false;
 const renderApp = () => {
@@ -30,6 +29,10 @@ const renderApp = () => {
         isRender = true;
     }
 };
+
+
+
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {

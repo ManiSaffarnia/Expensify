@@ -4,12 +4,12 @@ import { SingleDatePicker } from 'react-dates';
 
 
 export default class ExpenseForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             description: props.expense ? props.expense.description : '',
             note: props.expense ? props.expense.note : '',
-            amount: props.expense ? (props.expense.amount/100).toString() : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
             errorState: ''
@@ -18,26 +18,26 @@ export default class ExpenseForm extends React.Component {
 
     onDescriptionChange = (e) => {
         const description = e.target.value;
-        this.setState(()=>({ description }));
+        this.setState(() => ({ description }));
     };
 
     onNoteChange = (e) => {
-      const note = e.target.value;
-      this.setState(()=>({note}));
+        const note = e.target.value;
+        this.setState(() => ({ note }));
     };
 
     onAmountChange = (e) => {
         const amount = e.target.value;
         if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            this.setState(()=>({amount}));
+            this.setState(() => ({ amount }));
         }
-        else{
+        else {
             console.log("doesn't match");
         }
     };
 
     onDateChange = (createdAt) => {
-        if (createdAt){
+        if (createdAt) {
             this.setState(() => ({ createdAt }));
         }
     };
@@ -47,12 +47,12 @@ export default class ExpenseForm extends React.Component {
 
 
     onSubmit = (e) => {
-        if(!this.state.description || !this.state.amount){
+        if (!this.state.description || !this.state.amount) {
             //error ke khali nabashe field ha
-            this.setState(()=>({errorState: "Please provide description and amount"}))
+            this.setState(() => ({ errorState: "Please provide description and amount" }))
         }
         else {
-            this.setState(()=>({errorState: ''}));
+            this.setState(() => ({ errorState: '' }));
             //expense jadid vared shode ro barmigardoonim be bala
             this.props.onSubmit({
                 description: this.state.description,
@@ -61,30 +61,30 @@ export default class ExpenseForm extends React.Component {
                 note: this.state.note
             });
         }
-      e.preventDefault();
+        e.preventDefault();
     };
 
 
 
     render() {
         return (
-            <div>
-                {this.state.errorState && <p id="errorState">{this.state.errorState}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" name="description" placeholder="Description" autoFocus value={this.state.description} onChange={this.onDescriptionChange}/>
-                    <input type="text" name="amount" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChange}/>
-                    <br/>
+            <div className="content-container">
+                <form className="form" onSubmit={this.onSubmit}>
+                    {this.state.errorState && <p className="form__error" id="errorState">{this.state.errorState}</p>}
+                    <input className="text-input" type="text" name="description" placeholder="Description" autoFocus value={this.state.description} onChange={this.onDescriptionChange} />
+                    <input className="text-input" type="text" name="amount" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChange} />
                     <SingleDatePicker
                         date={this.state.createdAt}
                         onDateChange={this.onDateChange}
                         focused={this.state.calendarFocused}
                         onFocusChange={this.onFocusChange}
                         numberOfMonths={1}
-                        isOutsideRange={()=>false}
+                        isOutsideRange={() => false}
                     />
-                    <br/>
-                    <textarea name="note" id="" cols="30" rows="10" placeholder="Add a note for yout expense" value={this.state.note} onChange={this.onNoteChange}/>
-                    <button>Add Expense</button>
+                    <textarea className="text-area" name="note" id="" cols="30" rows="10" placeholder="Add a note for yout expense (optional)" value={this.state.note} onChange={this.onNoteChange} />
+                    <div>
+                        <button className="button">Save Expense</button>
+                    </div>
                 </form>
             </div>
         )

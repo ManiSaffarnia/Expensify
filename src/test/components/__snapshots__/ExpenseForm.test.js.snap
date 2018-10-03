@@ -1,17 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Error for invalid data 1`] = `
-<div>
-  <p
-    id="errorState"
-  >
-    Please provide description and amount
-  </p>
+<div
+  className="content-container"
+>
   <form
+    className="form"
     onSubmit={[Function]}
   >
+    <p
+      className="form__error"
+      id="errorState"
+    >
+      Please provide description and amount
+    </p>
     <input
       autoFocus={true}
+      className="text-input"
       name="description"
       onChange={[Function]}
       placeholder="Description"
@@ -19,13 +24,13 @@ exports[`should render Error for invalid data 1`] = `
       value=""
     />
     <input
+      className="text-input"
       name="amount"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
       value=""
     />
-    <br />
     <withStyles(SingleDatePicker)
       anchorDirection="left"
       appendToBody={false}
@@ -113,30 +118,38 @@ exports[`should render Error for invalid data 1`] = `
       withFullScreenPortal={false}
       withPortal={false}
     />
-    <br />
     <textarea
+      className="text-area"
       cols="30"
       id=""
       name="note"
       onChange={[Function]}
-      placeholder="Add a note for yout expense"
+      placeholder="Add a note for yout expense (optional)"
       rows="10"
       value=""
     />
-    <button>
-      Add Expense
-    </button>
+    <div>
+      <button
+        className="button"
+      >
+        Save Expense
+      </button>
+    </div>
   </form>
 </div>
 `;
 
 exports[`should render ExpenseFrom 1`] = `
-<div>
+<div
+  className="content-container"
+>
   <form
+    className="form"
     onSubmit={[Function]}
   >
     <input
       autoFocus={true}
+      className="text-input"
       name="description"
       onChange={[Function]}
       placeholder="Description"
@@ -144,13 +157,13 @@ exports[`should render ExpenseFrom 1`] = `
       value=""
     />
     <input
+      className="text-input"
       name="amount"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
       value=""
     />
-    <br />
     <withStyles(SingleDatePicker)
       anchorDirection="left"
       appendToBody={false}
@@ -238,30 +251,38 @@ exports[`should render ExpenseFrom 1`] = `
       withFullScreenPortal={false}
       withPortal={false}
     />
-    <br />
     <textarea
+      className="text-area"
       cols="30"
       id=""
       name="note"
       onChange={[Function]}
-      placeholder="Add a note for yout expense"
+      placeholder="Add a note for yout expense (optional)"
       rows="10"
       value=""
     />
-    <button>
-      Add Expense
-    </button>
+    <div>
+      <button
+        className="button"
+      >
+        Save Expense
+      </button>
+    </div>
   </form>
 </div>
 `;
 
 exports[`should render ExpenseFrom with data: EDIT 1`] = `
-<div>
+<div
+  className="content-container"
+>
   <form
+    className="form"
     onSubmit={[Function]}
   >
     <input
       autoFocus={true}
+      className="text-input"
       name="description"
       onChange={[Function]}
       placeholder="Description"
@@ -269,13 +290,13 @@ exports[`should render ExpenseFrom with data: EDIT 1`] = `
       value="Gum"
     />
     <input
+      className="text-input"
       name="amount"
       onChange={[Function]}
       placeholder="Amount"
       type="text"
       value="1.95"
     />
-    <br />
     <withStyles(SingleDatePicker)
       anchorDirection="left"
       appendToBody={false}
@@ -363,19 +384,23 @@ exports[`should render ExpenseFrom with data: EDIT 1`] = `
       withFullScreenPortal={false}
       withPortal={false}
     />
-    <br />
     <textarea
+      className="text-area"
       cols="30"
       id=""
       name="note"
       onChange={[Function]}
-      placeholder="Add a note for yout expense"
+      placeholder="Add a note for yout expense (optional)"
       rows="10"
       value=""
     />
-    <button>
-      Add Expense
-    </button>
+    <div>
+      <button
+        className="button"
+      >
+        Save Expense
+      </button>
+    </div>
   </form>
 </div>
 `;

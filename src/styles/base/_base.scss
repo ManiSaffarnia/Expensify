@@ -1,10 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+
 html{
     font-size: 62.5%; //baes mishe font paye beshe 10px ke kar ro baraye kar ba REM rahat mikone
 }
 
 body{
+    color: $dark-gray;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
+    line-height: 1.6;
+    
 }
 
 button{
